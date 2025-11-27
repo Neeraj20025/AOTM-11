@@ -336,6 +336,70 @@
 
 
 
+/* Hamburger icon (Hidden on desktop) */
+.menu-toggle {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: var(--text-light);
+    background-color: var(--card-dark);
+    border: 2px solid var(--primary-color);
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+}
+
+/* Desktop navigation */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: grid;
+    }
+
+    nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--card-dark);
+        border-radius: 8px;
+        padding: 15px 0;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    nav a {
+        display: block;
+        padding: 12px;
+        margin: 5px 0;
+        width: 100%;
+    }
+
+    nav.active {
+        display: flex;
+    }
+
+    .nav-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+}
+
+
+nav {
+    transition: all 0.3s ease;
+}
 
 
 
@@ -376,20 +440,36 @@ html, body {
     </style>
 </head>
 <body>
+    <script>
+function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("active");
+}
+
+// Close menu after a link is clicked (for mobile)
+document.querySelectorAll('#navMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.getElementById("navMenu").classList.remove("active");
+    });
+});
+</script>
+
 
     <!-- Header / Navigation -->
-    <header>
-        <div class="container nav-content">
-            <div class="logo">GENERATIVE AI</div>
-            <nav>
-                <a href="#home">Home</a>
-                <a href="#history">History</a>
-                <a href="#evolution">Evolution</a>
-                <a href="#applications">Apps</a>
-                <a href="#contact">Contact</a>
-            </nav>
-        </div>
-    </header>
+   
+   
+   <header>
+    <div class="container nav-content">
+        <div class="logo">GENERATIVE AI</div>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <nav id="navMenu">
+            <a href="#home">Home</a>
+            <a href="#history">History</a>
+            <a href="#evolution">Evolution</a>
+            <a href="#applications">Apps</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
 
     <!-- 1. Home / Landing Section -->
     <section id="home">
